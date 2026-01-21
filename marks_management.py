@@ -6,7 +6,11 @@ print("Total no. of marks:",len(marks_list))
 #tuple
 marks_tuple=tuple(marks_list)
 print("Marks tuple:",marks_tuple)
-print("Highest mark:",max(marks_tuple))
+max=marks_tuple[0]
+for i in marks_tuple:
+    if i>max:
+        max=i
+print("Highest mark:",max)
 
 #set
 marks_set=set(marks_list)
