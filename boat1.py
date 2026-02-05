@@ -12,7 +12,7 @@ DOT_BLUE = "#0343DF"
 
 class BoatDiagram(Scene):
     def construct(self):
-        image= ImageMobject(r"c:\Users\badhr\Downloads\boat (2).png") 
+        image= ImageMobject("boat1.png") 
         image.scale(0.5).shift(RIGHT*8, UP*3)
         self.add(image)
 
