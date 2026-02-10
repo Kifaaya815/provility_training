@@ -2,3 +2,15 @@ manim-venv/
 __pycache__/
 media/
 *.pyc
+
+# ignore everything
+*
+
+# allow path to files
+!11th_sb_example81/
+!11th_sb_example81/example81/
+!11th_sb_example81/example81/step_1.py
+!11th_sb_example81/example81/step_2.py
+
+# allow gitignore
+!.gitignore
