@@ -8,6 +8,7 @@ config.pixel_width= 2800
 config.background_color= WHITE
 
 P_PURP="#6D597A"
+RED_1="#FF000D"
 
 class Example81(Scene):
     def construct(self):
@@ -32,7 +33,7 @@ class Example81(Scene):
         P = Line(start=axes.c2p(0, 0),
                  end=axes.c2p(-2.5, 1.55),
                  color=BLUE_D,
-                 stroke_width=8)
+                 stroke_width=8).set_z_index(-1)
         
         P.add_tip(tip_shape=StealthTip, tip_length=0.62, tip_width=0.62)
         P_label = Text("P", color=BLACK, font_size=36)
@@ -45,8 +46,12 @@ class Example81(Scene):
         angle_label= MathTex("60^{\\circ}", font_size=40, color=BLACK)
         angle_label.next_to(angle_arc, UP, buff=0.2)
 
-        distance_label = Text("30 km", color=BLACK, font_size=30)
+        distance_label = MathTex(r"30\,\text{km}", color=BLACK, font_size=40)
         distance_label.next_to(P_label.get_center(), DOWN, buff=0.99).shift(RIGHT*0.8)
+        
+        O_label = Text("O", color=BLACK, font_size=36).move_to(axes.c2p(0.25, -0.35))
+        O_dot = Dot(axes.c2p(0, 0), color=RED_1, radius=0.1).set_z_index(10).shift(DOWN*0.03)
+        self.add(O_label, O_dot)
 
         N = Text("N", color=BLACK, font_size=36).next_to(axes.y_axis.get_end(), UP, buff=0.2)
         S = Text("S", color=BLACK, font_size=36).next_to(axes.y_axis.get_start(), DOWN, buff=0.2)
