@@ -14,3 +14,11 @@ media/
 
 # allow gitignore
 !.gitignore
+
+!11th_sb_example81/exercise81/
+!11th_sb_example81/exercise81/exercise811/
+!11th_sb_example81/exercise81/exercise811/step_1.py
+!11th_sb_example81/exercise81/exercise811/step_2.py
+
+!11th_sb_example81/exercise81/exercise813/
+!11th_sb_example81/exercise81/exercise813/step_1.py
