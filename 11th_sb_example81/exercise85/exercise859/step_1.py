@@ -10,7 +10,7 @@ config.background_color = WHITE
 DUSTYROSE = "#C0737A"
 DUSTYTEAL = "#4C9085"
 
-class Exercise817(Scene):
+class Exercise859(Scene):
     def construct(self):
         A = np.array([-4, -2, 0])
         B = np.array([4, -2, 0])
