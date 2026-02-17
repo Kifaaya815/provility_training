@@ -1,46 +1,14 @@
+# Virtual environment
 manim-venv/
+
+# Python cache
 __pycache__/
-media/
 *.pyc
 
-# ignore everything
+# Manim render output
+media/
+
+# Ignore everything except python files
 *
-
-# allow path to files
-!11th_sb_chapter8/
-!11th_sb_chapter8/example81/
-!11th_sb_chapter8/example81/step_1.py
-!11th_sb_chapter8/example81/step_2.py
-
-# allow gitignore
-!.gitignore
-
-!11th_sb_chapter8/exercise81/
-!11th_sb_chapter8/exercise81/exercise811/
-!11th_sb_chapter8/exercise81/exercise811/step_1.py
-!11th_sb_chapter8/exercise81/exercise811/step_2.py
-
-!11th_sb_chapter8/exercise81/exercise813/
-!11th_sb_chapter8/exercise81/exercise813/step_1.py
-
-!11th_sb_chapter8/exercise81/exercise816/
-!11th_sb_chapter8/exercise81/exercise816/*.py
-
-!11th_sb_chapter8/exercise81/exercise817/
-!11th_sb_chapter8/exercise81/exercise817/*.py
-
-!11th_sb_chapter8/exercise81/exercise8112/
-!11th_sb_chapter8/exercise81/exercise8112/step_1.py
-
-!11th_sb_chapter8/exercise82/
-!11th_sb_chapter8/exercise82/exercise8210/
-!11th_sb_chapter8/exercise82/exercise8210/*.py
-
-!11th_sb_chapter8/exercise85/
-!11th_sb_chapter8/exercise85/exercise859/
-!11th_sb_chapter8/exercise85/exercise859/*.py
-
-!11th_sb_chapter8/exercise85/exercise8512/
-!11th_sb_chapter8/exercise85/exercise8512/*.py
-
-
+!*/
+!*.py
