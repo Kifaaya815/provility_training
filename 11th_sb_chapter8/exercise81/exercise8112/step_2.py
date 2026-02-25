@@ -9,12 +9,10 @@ class Exercise8112b(Scene):
     def construct(self):
         self.camera.background_color = WHITE
 
-        # Slightly smaller & moved down
         A = LEFT * 1.5 + DOWN * 2
         B = RIGHT * 3 + DOWN * 3
         C = RIGHT * 3 + UP * 3
         D = LEFT * 1.5 + UP * 2
-
 
         DB = Line(A,C ,color=GREEN)
 
@@ -23,7 +21,6 @@ class Exercise8112b(Scene):
         AD = Line(A,D,color=GREEN)
         DC=Line(D,C,color=GREEN)
 
-        # Labels (clean positioning)
         label_D = Text("D", font_size=28, color=BLACK).next_to(A, DOWN)
         label_B = Text("B", font_size=28, color=BLACK).next_to(C, UP)
         label_A = Text("A", font_size=28, color=BLACK).next_to(D, UP)
@@ -39,13 +36,12 @@ class Exercise8112b(Scene):
                 mid - direction * 0.22,
                 mid + direction * 0.22,
                 color=color,
-                stroke_width=0  # shaft invisible
+                stroke_width=0  
             )
             seg.add_tip(tip_length=0.27, tip_width=0.25)
             return seg
 
-        # Tips
-        tip1 = mid_tip(AD, reverse=True)          # faces D (fixed)
+        tip1 = mid_tip(AD, reverse=True)         
         tip2 = mid_tip(AF).shift(UP*0.01)
         tip3 = mid_tip(DC).shift(DOWN * 0)
 
