@@ -1,50 +1,86 @@
 from manim import *
 import numpy as np
 
-config.frame_height = 15
-config.frame_width = 14
+config.frame_height = 11
+config.frame_width = 12
 config.pixel_height = 2800
 config.pixel_width = 2800
 config.background_color = WHITE
 
-BURGUNDY = "#610023"
-BURNTORANGE = "#C04E01"
 
-class Example91(Scene):
+class Example921(Scene):
     def construct(self):
 
-        axes = Axes(x_range=[-0.5, 6, 1],
-                    y_range=[-0.5, 4, 1],
-                    x_length=8,
-                    y_length=6,
-                    axis_config={"color": BURGUNDY,
-                                 "stroke_width": 6,
-                                 "include_ticks": False,
-                                 "include_numbers": False})
+        left = -5
+        right = 5
 
-        axes.shift(LEFT*0.5 + DOWN*0.5).set_z_index(10)
+        base_line = Line(np.array([left, 0, 0]),
+                         np.array([right, 0, 0]),
+                         color=BLACK,
+                         stroke_width=4)
 
-        origin_label = MathTex("0", font_size=40, color=BLACK)
-        origin_label.next_to(axes.c2p(0, 0), DOWN + LEFT, buff=0.15)
+        left_arrow = Arrow(start=np.array([left + 0.8, 0, 0]),
+                           end=np.array([left, 0, 0]),
+                           buff=0,
+                           color=BLACK,
+                           stroke_width=4,
+                           tip_shape=StealthTip)
 
-        x_label = MathTex("x", font_size=45, color=BLACK)
-        y_label = MathTex("y", font_size=45, color=BLACK)
+        right_arrow = Arrow(start=np.array([right - 0.8, 0, 0]),
+                            end=np.array([right, 0, 0]),
+                            buff=0,
+                            color=BLACK,
+                            stroke_width=4,
+                            tip_shape=StealthTip)
 
-        x_label.next_to(axes.x_axis.get_end())
-        y_label.next_to(axes.y_axis.get_end(), UP)
+        self.add(base_line, left_arrow, right_arrow)
 
-        sqrt_curve = ParametricFunction(lambda t: axes.c2p(t, np.sqrt(t)),
-                                        t_range=[0, 5.6],
-                                        color=BURNTORANGE,
-                                        stroke_width=6)
+        origin_tick = Line(UP * 0.25,
+                           DOWN * 0.25,
+                           color=BLACK,
+                           stroke_width=4)
 
+        zero_label = MathTex("0", color=BLACK).next_to(origin_tick, DOWN, buff=0.25)
 
-        func_label = MathTex("f(x)=\\sqrt{x}", color=BLACK)
-        func_label.scale(0.9)
-        func_label.next_to(sqrt_curve, UP, buff=0.3).shift(RIGHT*2.5)
+        self.add(origin_tick, zero_label)
 
-        self.add(axes)
-        self.add(sqrt_curve)
-        self.add(origin_label)
-        self.add(x_label, y_label)
-        self.add(func_label)
+        left_inner = Arrow(start=np.array([-0.6, 0, 0]),
+                           end=np.array([-1.8, 0, 0]),
+                           buff=0,
+                           color=BLACK,
+                           stroke_width=4,
+                           tip_shape=StealthTip).shift(RIGHT*0.4)
+
+        right_inner = Arrow(start=np.array([0.6, 0, 0]),
+                            end=np.array([1.8, 0, 0]),
+                            buff=0,
+                            color=BLACK,
+                            stroke_width=4,
+                            tip_shape=StealthTip).shift(LEFT*0.4)
+
+        self.add(left_inner, right_inner)
+
+        lhl = MathTex(r"\text{L.H.L}", color=BLACK).scale(0.9).next_to(left_inner, UP, buff=1).shift(LEFT*1.5)
+        lhl_val = MathTex(r"0^{-}", color=BLACK).next_to(lhl, DOWN, buff=0.35)
+
+        rhl = MathTex(r"\text{R.H.L}", color=BLACK).scale(0.9).next_to(right_inner, UP, buff=1).shift(RIGHT*1.5)
+        rhl_val = MathTex(r"0^{+}", color=BLACK).next_to(rhl, DOWN, buff=0.3)
+
+        self.add(lhl, lhl_val, rhl, rhl_val)
+
+        left_brace = Brace(Line(np.array([-3.5, 0, 0]), np.array([-0.4, 0, 0])),
+                           DOWN,
+                           color=BLACK).shift(DOWN*0.15+LEFT*1)
+
+        not_defined = MathTex(r"f(x)\ \text{not defined}", color=BLACK, font_size=40)
+        not_defined.next_to(left_brace, DOWN, buff=0.42)
+
+        self.add(left_brace, not_defined)
+
+        fx0 = MathTex(r"f(x)=0", color=BLACK, font_size=40)
+        fx0.next_to(origin_tick, DOWN, buff=0.8)
+
+        fxroot = MathTex(r"f(x)=\sqrt{x}", color=BLACK, font_size=40)
+        fxroot.next_to(np.array([3.5, 0, 0]), DOWN, buff=1).shift(LEFT*0.9)
+
+        self.add(fx0, fxroot)

@@ -29,9 +29,7 @@ class Exercise8112d(Scene):
             angle_offset=0,
             shift_amount=0):
 
-            tip = ArrowTriangleFilledTip(length=0.27,
-                                         width=0.25,
-                                         color=color)
+            tip = StealthTip(length=0.20, color=color)
 
             base_angle = line.get_angle() - PI / 2
             tip.rotate(base_angle + angle_offset)
@@ -44,19 +42,19 @@ class Exercise8112d(Scene):
 
         tip_AF = manual_tip(AF,
                             proportion=0.45,
-                            angle_offset=4.8,
-                            shift_amount=0.1)
+                            angle_offset=-4.7,
+                            shift_amount=0.1).shift(UP * 0.01)
 
         tip_EF = manual_tip(EF,
                             color=BLACK,
                             proportion=0.5,
-                            angle_offset=4.7,
+                            angle_offset=-4.7,
                             shift_amount=0.0)
 
         tip_CF = manual_tip(CF,
                             proportion=0.55,
-                            angle_offset=4.7,
-                            shift_amount=0.0).shift(RIGHT * 0.03)
+                            angle_offset=-4.7,
+                            shift_amount=0.0).shift(RIGHT * 0.02)
 
         def add_ticks(line, n=2, size=0.3, color=BLACK, center=0.5, spacing=0.03):
             ticks = VGroup()

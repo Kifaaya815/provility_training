@@ -38,7 +38,7 @@ class Exercise8112b(Scene):
                 color=color,
                 stroke_width=0  
             )
-            seg.add_tip(tip_length=0.27, tip_width=0.25)
+            seg.add_tip(tip_shape=StealthTip, tip_length=0.20, tip_width=0.20)
             return seg
 
         tip1 = mid_tip(AD, reverse=True)         
