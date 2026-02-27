@@ -32,7 +32,6 @@ class Exercise917(Scene):
 
         axes.shift(DOWN*0.2)
 
-        # 🔥 MANUAL X-AXIS LABELS
         x_labels = VGroup()
         for x in range(-2, 6):
             if x != 0:
@@ -40,7 +39,6 @@ class Exercise917(Scene):
                 label.next_to(axes.coords_to_point(x, 0), DOWN, buff=0.1).shift(RIGHT*0.01)
                 x_labels.add(label)
 
-        # 🔥 MANUAL Y-AXIS LABELS
         y_labels = VGroup()
         for y in range(-1, 6):
             if y != 0:
