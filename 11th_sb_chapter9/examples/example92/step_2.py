@@ -108,16 +108,24 @@ class Example92b(Scene):
         dot_11 = Dot(point_11, radius=0.06, color=PURE_BLUE)
         circle_11 = Circle(radius=0.15, color=BLACK, stroke_width=3).move_to(point_11)
 
-        point_12 = axes.c2p(2.8, 1.66)
+        point_12 = axes.c2p(2, 1.414)
         dot_12 = Dot(point_12, radius=0.06, color=PURE_BLUE)
         circle_12 = Circle(radius=0.15, color=BLACK, stroke_width=3).move_to(point_12)
 
-        point_13 = axes.c2p(3.6, 1.89)
+        point_13 = axes.c2p(3, 1.732)
         dot_13 = Dot(point_13, radius=0.06, color=PURE_BLUE)
         circle_13 = Circle(radius=0.15, color=BLACK, stroke_width=3).move_to(point_13)
 
-        origin_coord = MathTex("(0,0)", color=BLACK, font_size=35)\
-            .next_to(origin_label, DOWN * 0.5).shift(LEFT * 0.3)
+        point_14 = axes.c2p(4, 2)
+        dot_14 = Dot(point_14, radius=0.06, color=PURE_BLUE)
+        circle_14 = Circle(radius=0.15, color=BLACK, stroke_width=3).move_to(point_14)
+
+        origin_coord = MathTex("(0,0)", color=BLACK, font_size=30).next_to(origin_label, DOWN * 0.5).shift(LEFT * 0.2)
+        coord1 = MathTex("(1,1)", color=BLACK, font_size=25).next_to(circle_11, DOWN * 0.5)
+        coord2 = MathTex("(2,1.414)", color=BLACK, font_size=25).next_to(circle_12, DOWN * 0.5)
+        coord3 = MathTex("(3,1.732)", color=BLACK, font_size=25).next_to(circle_13, DOWN * 0.5)
+        coord4 = MathTex("(4,2)", color=BLACK, font_size=25).next_to(circle_14, DOWN * 0.5)
+
 
         self.add(axes, origin_coord,
                  sqrt_curve,
@@ -129,4 +137,6 @@ class Example92b(Scene):
                  origin_dot, origin_circle,
                  dot_11, circle_11,
                  dot_12, circle_12,
-                 dot_13, circle_13, curve_arrow)
+                 dot_13, circle_13, curve_arrow,
+                 dot_14, circle_14,
+                 coord1, coord2, coord3, coord4)
