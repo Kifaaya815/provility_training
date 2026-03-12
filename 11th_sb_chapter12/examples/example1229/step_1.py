@@ -6,7 +6,7 @@ config.pixel_height = 2800
 config.pixel_width = 2800
 config.background_color = WHITE
 
-class Example1228(Scene):
+class Example1229(Scene):
     def construct(self):
         rect_color = BLACK
         a_line_color = BLACK
@@ -65,8 +65,8 @@ class Example1228(Scene):
         ptr_end   = ptr_start + DOWN * 1.1 + RIGHT * 0.1
         p_ctrl_1, p_ctrl_2 = ptr_start + DOWN * 0.1, ptr_end + LEFT * 1.5
         
-        b_pointer_curve = CubicBezier(ptr_start, p_ctrl_1, p_ctrl_2, ptr_end, color=PURE_RED, stroke_width=3).shift(UP*0.1)
-        b_tip = Triangle(color=PURE_RED, fill_opacity=1).scale(0.12).shift(UP*0.2).rotate(-90 * DEGREES).move_to(ptr_end).shift(UP*0.1)
+        b_pointer_curve = CubicBezier(ptr_start, p_ctrl_1, p_ctrl_2, ptr_end, color="#66BB6A", stroke_width=3).shift(UP*0.1)
+        b_tip = Triangle(color="#66BB6A", fill_opacity=1).scale(0.12).shift(UP*0.2).rotate(-90 * DEGREES).move_to(ptr_end).shift(UP*0.1)
         b_ext_label = MathTex("G", color=BLACK, font_size=50).next_to(ptr_end, RIGHT, buff=0.2).shift(UP*0.1)
 
         rec=Rectangle(height=0.5, width=0.7, color="#F8D1D1", fill_color="#F8D1D1", fill_opacity=1).shift(RIGHT*0.5)
