@@ -9,52 +9,65 @@ config.background_color = WHITE
 
 class Example1210(Scene):
     def construct(self):
-        line_color = BLACK
 
-        data = [ ["n(S)", "6", "5", "4"],
-                 ["n(A)", "5", "4", ""] ]
+        line_color = "#2E5E9E"
+        text_color = BLACK
 
-        table = Table(data,
-                      line_config={"color": line_color,
-                                   "stroke_width": 6.5,
-                                   "joint_type": LineJointType.MITER},
-                      element_to_mobject=lambda x: Text(x, color=BLACK, font_size=48),
-                      include_outer_lines=True)
+        # Rectangles
+        rect1 = Rectangle(width=3.5, height=3.7, stroke_color=line_color, stroke_width=6)
+        rect2 = Rectangle(width=2.4, height=1.9, stroke_color=line_color, stroke_width=6)
+        rect3 = Rectangle(width=2.8, height=2.6, stroke_color=line_color, stroke_width=6)
 
-        table.scale(1)
-        
-        table.set_z_index(0)
+        # Position rectangles
+        rect1.move_to(UP*0.5)
+        rect3.next_to(rect1, RIGHT, buff=0)
+        rect2.next_to(rect1, LEFT, buff=0)
 
-        for entry in table.get_entries():
-            entry.set_z_index(3)
+        # Align bottoms
+        rect2.align_to(rect1, DOWN)
+        rect3.align_to(rect1, DOWN)
 
-        gray_cells_list = []
-        for col in range(1, 4):
-            cell = table.get_cell((2, col), color=BLACK)
-            cell.set_fill(GRAY, opacity=0.3)
-            cell.set_z_index(1)  
-            gray_cells_list.append(cell)
+        # Labels
+        label1 = Text("1", color=text_color).scale(1.1)
+        label2 = Text("2", color=text_color).scale(1.1)
+        label3 = Text("3", color=text_color).scale(1)
 
-        red_cell = table.get_cell((2, 4), color=BLACK)
-        red_cell.set_fill(PURE_RED, opacity=1)
-        red_cell.set_z_index(1)
+        label1.next_to(rect1, UP, buff=0.2)
+        label2.next_to(rect3, UP, buff=0.2)
+        label3.next_to(rect2, UP, buff=0.2)
 
-        red_text = Text("Red", color=WHITE, font_size=48)
-        red_text.move_to(red_cell.get_center())
-        red_text.set_z_index(3)
+        Smallest=Text("Smallest", color=BLACK, font_size=35).move_to(rect2)
+        Largest=Text("Largest", color=BLACK, font_size=40).move_to(rect1)
+        Medium=Text("Medium", color=BLACK, font_size=35).move_to(rect3)
 
-        top1 = Text("6", color=BLACK, font_size=48)
-        top2 = Text("6", color=BLACK, font_size=48)
-        top3 = Text("3", color=BLACK, font_size=48)
+        arrow1 = Arrow(start=(1.1,1.5,0), end=(1.1,0,0), color=PURE_RED).next_to(rect2, DOWN, buff=-0.3)
+        arrow2 = Arrow(start=(1.1,1.5,0), end=(1.1,0,0), color=PURE_RED).next_to(rect1, DOWN, buff=-0.3)
+        arrow3 = Arrow(start=(1.1,1.5,0), end=(1.1,0,0), color=PURE_RED).next_to(rect3, DOWN, buff=-0.3)
 
-        top1.next_to(table.get_cell((1, 2)), UP, buff=0.25)
-        top2.next_to(table.get_cell((1, 3)), UP, buff=0.25)
-        top3.next_to(table.get_cell((1, 4)), UP, buff=0.25)
+        text1 =Tex("Fixed Red Colour", color=BLACK, font_size=28).next_to(arrow1, DOWN, buff=0.13)
+        text2 =Tex("Remaining 5 Colours", color=BLACK, font_size=28).next_to(arrow2, DOWN, buff=0.1)
+        text3 =Tex("Remaining 4 Colours", color=BLACK, font_size=28).next_to(arrow3, DOWN, buff=0.1)
 
-        rect = Rectangle(height=2.85, width=7.55, color=BLACK, stroke_width=5)
+        line1=Line(start=(1.1,1.5,0), end=(3.5,1.5,0), color=BLACK).next_to(text1, DOWN, buff=0.22)
+        line2=Line(start=(1.1,1.5,0), end=(3.65,1.5,0), color=BLACK).next_to(text2, DOWN, buff=0.2)
+        line3=Line(start=(1.1,1.5,0), end=(3.65,1.5,0), color=BLACK).next_to(text3, DOWN, buff=0.2)
 
-        self.add(table)            
-        self.add(*gray_cells_list) 
-        self.add(red_cell)         
-        self.add(red_text)         
-        self.add(top1, top2, top3, rect)
+        text4 =Tex("1 Choice", color=BLACK, font_size=28).next_to(line1, DOWN, buff=0.13)
+        text5 =Tex("5 Choices", color=BLACK, font_size=28).next_to(line2, DOWN, buff=0.13)
+        text6 =Tex("4 Choices", color=BLACK, font_size=28).next_to(line3, DOWN, buff=0.13)
+
+        arrowline1=Line(start=(1.1,1.5,0), end=(1.8,1.5,0), color="#2E5E9E").next_to(text5, DOWN, buff=0.5).shift(RIGHT*0.5)
+        arrowline2=Line(start=(1.1,1.5,0), end=(1.8,1.5,0), color="#2E5E9E").next_to(arrowline1, DOWN, buff=0.1)
+        tri=Triangle(color="#2E5E9E", fill_color="#2E5E9E", fill_opacity=1).next_to(arrowline1, RIGHT).rotate(angle=40.3).scale(0.16)
+        tri.shift(LEFT*1.4+DOWN*0.26)
+
+        grp=VGroup(arrowline1, arrowline2, tri)
+        grp.shift(DOWN*0.2+RIGHT*1.5).scale(0.7)
+
+        formula=MathTex("1", r"\text{x}", "5", r"\text{x}", "4", "=", "20", color=BLACK, font_size=39).next_to(tri, buff=0.2)
+
+        # Add to scene
+        self.add(rect1, rect2, rect3, label1, label2, label3,
+                 Smallest, Largest, Medium, arrow1, arrow2, arrow3,
+                 text1, text2, text3, line1, line2, line3,
+                 text4, text5, text6, arrowline1, arrowline2, tri, formula)

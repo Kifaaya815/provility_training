@@ -1,7 +1,7 @@
 from manim import *
 
-config.frame_height = 7
-config.frame_width = 8
+config.frame_height = 10
+config.frame_width = 13
 config.pixel_height = 2800
 config.pixel_width = 2800
 config.background_color = WHITE
@@ -9,7 +9,7 @@ config.background_color = WHITE
 
 class Exercise1213(Scene):
     def construct(self):
-        data = [ ["M", "A", "T"],
+        data = [ [r"\text{M (Mango)}", r"\text{A (Apple)}", r"\text{Total Fruits (T)}"],
                  ["5", "4", "9"]]
 
         table = Table(data,
@@ -23,6 +23,6 @@ class Exercise1213(Scene):
 
         table.move_to(ORIGIN)
 
-        rect = Rectangle(height=1.75, width=3.6, color="#A8415B", stroke_width=5)
+        rect = Rectangle(height=1.88, width=10.45, color="#A8415B", stroke_width=5)
 
         self.add(table, rect)
