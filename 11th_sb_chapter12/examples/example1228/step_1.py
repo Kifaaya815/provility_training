@@ -1,13 +1,14 @@
 from manim import *
 
-config.frame_height = 9
-config.frame_width = 10
-config.pixel_height = 2800
-config.pixel_width = 2800
+config.frame_height = 25
+config.frame_width = 35
+config.pixel_height = 2200
+config.pixel_width = 3000
 config.background_color = WHITE
 
 class Example1228(Scene):
     def construct(self):
+        #RIGHT DIAGRAM
         rect_color = BLACK
         a_line_color = BLACK
         inner_line_color = PURE_RED 
@@ -90,3 +91,134 @@ class Example1228(Scene):
         self.add(b_pointer_curve, b_tip, b_ext_label)
         self.add(red_line)
         self.add(b_oval)
+
+        grp=VGroup(rect, s_label, 
+                   rec,rec1, a1_b_fill,rec2, a3_b_fill, a2_b_fill, cir, line, line1, line2, line3, line4,
+                   a1_label, a2_label, a3_label,
+                   line_1_2, line_3,
+                   inner_line_1_2, inner_line_3,
+                   t_a1_b, t_a2_b, t_a3_b,
+                   b_pointer_curve, b_tip, b_ext_label,
+                   red_line, b_oval)
+        grp.shift(RIGHT*12.5+UP*1.7).scale(1.34)
+
+        line_color = BLACK
+        text_color = BLACK
+
+        #LEFT DIAGRAM
+        title = Tex("Company", color=text_color).scale(1).shift(UP*6+RIGHT*2)
+        top_line = Rectangle(height=3.35, width=14.8, color=line_color, fill_color="#FFFDE7", fill_opacity=1).shift(UP*3.95+RIGHT*1.75)
+
+        #A1 box
+        a1 = Tex("A1", color=text_color).scale(0.7)
+        x_manager = Tex("X $\\rightarrow$ Manager", color=text_color).scale(0.6)
+        ratio1 = Tex("Ratio : 4 : 2 : 3", color=text_color).scale(0.6)
+
+        prob_box1 = Rectangle(width=3.8, height=1.6, color=line_color, fill_color="#F9C7C7", fill_opacity=0.8)
+        prob_text1 = MathTex(
+            r"P(X \rightarrow \text{Manager})=\frac{4}{4+2+3}=\frac{4}{9}",
+        ).scale(0.48).set_color(text_color)
+
+        prob_text11 = MathTex(r"P(\text{Bonus} \mid \text{Manager X})=0.3").scale(0.48).set_color(text_color)
+ 
+        prob_group1 = VGroup(prob_box1, prob_text1, prob_text11)
+        prob_text1.move_to(prob_box1.get_center()).shift(UP*0.2)
+        prob_text11.next_to(prob_text1, DOWN, buff=0.25)
+
+        block1 = VGroup(a1, x_manager, ratio1, prob_group1).arrange(DOWN, buff=0.15)
+
+        #A2 box
+        a2 = Tex("A2", color=text_color).scale(0.7)
+        y_manager = Tex("Y $\\rightarrow$ Manager", color=text_color).scale(0.6)
+        ratio2 = Tex("Ratio : 4 : 2 : 3", color=text_color).scale(0.6)
+
+        prob_box2 = Rectangle(width=3.8, height=1.6, color=line_color, fill_color="#FFF9C4", fill_opacity=0.8)
+        prob_text2 = MathTex(
+            r"P(Y \rightarrow \text{Manager})=\frac{2}{4+2+3}=\frac{2}{9}",
+        ).scale(0.48).set_color(text_color)
+
+        prob_text21 = MathTex(r"P(\text{Bonus} \mid \text{Manager Y})=0.5").scale(0.48).set_color(text_color)
+
+        prob_group2 = VGroup(prob_box2, prob_text2, prob_text21)
+        prob_text2.move_to(prob_box2.get_center()).shift(UP*0.2)
+        prob_text21.next_to(prob_text2, DOWN, buff=0.25)
+
+        block2 = VGroup(a2, y_manager, ratio2, prob_group2).arrange(DOWN, buff=0.15)
+
+        #A3 box
+        a3 = Tex("A3", color=text_color).scale(0.7)
+        z_manager = Tex("Z $\\rightarrow$ Manager", color=text_color).scale(0.6)
+        ratio3 = Tex("Ratio : 4 : 2 : 3", color=text_color).scale(0.6)
+
+        prob_box3 = Rectangle(width=3.8, height=1.6, color=line_color, fill_color="#E8F5E9", fill_opacity=1)
+        prob_text3 = MathTex(
+            r"P(Z \rightarrow \text{Manager})=\frac{3}{4+2+3}=\frac{3}{9}",
+        ).scale(0.48).set_color(text_color)
+
+        prob_text31 = MathTex(r"P(\text{Bonus} \mid \text{Manager Z})=0.4").scale(0.48).set_color(text_color)
+
+        prob_group3 = VGroup(prob_box3, prob_text3, prob_text31)
+        prob_text3.move_to(prob_box3.get_center()).shift(UP*0.2)
+        prob_text31.next_to(prob_text3, DOWN, buff=0.25)
+
+        block3 = VGroup(a3, z_manager, ratio3, prob_group3).arrange(DOWN, buff=0.15)
+
+        #three blocks
+        blocks = VGroup(block1, block2, block3)
+        blocks.arrange(RIGHT, buff=1.1)
+        blocks.shift(UP*4+RIGHT*2)
+
+        #Connection 
+        join_point = Dot(ORIGIN, radius=0.01, color=line_color).shift(RIGHT*2+UP*1)
+
+        #Lines
+        line1 = Line(prob_box1.get_bottom(), join_point, color=PURE_RED)
+        line2 = Line(prob_box2.get_bottom(), join_point, color=PURE_RED)
+        line3 = Line(prob_box3.get_bottom(), join_point, color=PURE_RED)
+
+        bonus_text = Tex("(Bonus Introduced)", color=text_color).scale(0.65)
+        bonus_text.next_to(join_point, RIGHT, buff=0.2).shift(DOWN*0.7)
+
+        arrow = Arrow(join_point, DOWN*0.8+RIGHT*2, buff=0, color=PURE_RED, stroke_width=3.2)
+
+        #Final box
+        final_box = Rectangle(width=3.8, height=1.1, color=line_color, fill_color="#FFFDE7", fill_opacity=1)
+        final_text = MathTex(r"P(A_3 \mid B)", color=text_color).scale(0.6)
+
+        manager_text = MathTex("Manager Z", color=BLACK).scale(0.6)
+        equal_text = MathTex("=?", color=BLACK).scale(0.9)
+
+        B1_text=MathTex("B:", color=BLACK).next_to(prob_box1, LEFT, buff=0.1).scale(0.8).shift(UP*0.2)
+        B2_text=MathTex("B:", color=BLACK).next_to(prob_box2, LEFT, buff=0.1).scale(0.8).shift(UP*0.2)
+        B3_text=MathTex("B:", color=BLACK).next_to(prob_box3, LEFT, buff=0.1).scale(0.8).shift(UP*0.2)
+
+        outer_text1=MathTex(r"A_1 \rightarrow \text{X becoming Manager}", color=BLACK)
+        outer_text2=MathTex(r"A_2 \rightarrow \text{Y becoming Manager}", color=BLACK).next_to(outer_text1, DOWN)
+        outer_text3=MathTex(r"A_3 \rightarrow \text{Z becoming Manager}", color=BLACK).next_to(outer_text2, DOWN).shift(LEFT*0.05)
+        outer_text4=MathTex(r"B \rightarrow \text{Introducing Bonus Scheme}", color=BLACK).next_to(outer_text3, DOWN).shift(RIGHT*0.52)
+        
+        outer_grp=VGroup(outer_text1, outer_text2, outer_text3, outer_text4).next_to(top_line, buff=-9.5).scale(0.8).shift(DOWN*0.5)
+        self.add(outer_text1, outer_text2, outer_text3, outer_text4)
+
+        final_group = VGroup(final_box, final_text, manager_text, equal_text)
+        final_text.move_to(final_box.get_center()).shift(DOWN*0.2+LEFT*0.45)
+        manager_text.move_to(final_box.get_center()).shift(UP*0.2+LEFT*0.4)
+        equal_text.move_to(final_box.get_center()).shift(RIGHT*0.8)
+        final_group.next_to(arrow.get_end(), DOWN, buff=0.3)
+        final_box.shift(UP*0.1)
+        final_text.shift(UP*0.1)
+        manager_text.shift(UP*0.1)
+
+        self.add(title, top_line, blocks, join_point, line1, line2, line3,
+                 bonus_text, arrow, final_group)
+        self.add(B1_text, B2_text, B3_text)
+
+        left_diagram = VGroup(title, top_line, block1, block2, block3,
+                              join_point, line1, line2, line3, bonus_text,
+                              arrow, final_group, B1_text, B2_text, B3_text)
+        
+        new_grp=VGroup(left_diagram, outer_grp)
+        
+        left_diagram.shift(LEFT*9).scale(1)
+        new_grp.scale(1.19).shift(LEFT*0.8)
+        
